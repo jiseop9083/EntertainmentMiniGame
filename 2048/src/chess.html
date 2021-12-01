@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 통신병의 즐길거리 체스게임 페이지-->
+	<title>통신병의 즐길거리</title>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" href="" type="text/css"/>
+	<style>
+		
+		#wrapper {
+			width: 1060px;
+			min-height: 1000px;
+		}
+
+	
+		#header {
+			height: 200px;
+			margin: 10px;
+			background-color: blue;
+		}
+		
+		 #blackPlayer {
+			width: 150px;
+			height: 700px;
+			float: left;
+			margin: 10px;
+			background-color: pink;
+		}
+		 
+		#main {
+			height: 700px;
+			width: 700px;
+			float: left;
+			margin: 10px;
+			background-color: red;
+		}
+		
+		#whitePlayer{
+			width: 150px;
+			height: 700px;
+			float: left;
+			margin: 10px;
+			background-color: pink;
+			
+		}
+		
+		#controller{
+			height: 300px;
+			margin: 10px;
+			background-color: pink;
+			clear: both;
+		}
+		
+		#mainBoard .whiteSpace {
+			background-color: white;
+		}
+		
+		#mainBoard .blackSpace {
+			background-color: black;
+			
+		}
+		
+	</style>
+</head>
+	<body>
+		<script src="./chess.js"> </script>
+		
+		<h1>
+			체스게임
+		</h1>
+		<div id='wrapper'>
+			<div id='header'>
+			</div>
+			<br>
+			<div id='blackPlayer' style="position: relative">
+
+			</div>
+			<div id='main' style="position: relative">
+				<table id='mainBoard' border=1 align='center'>
+					<tr height=80>
+						<td width=80 class='whiteSpace'> </td>
+						<td width=80 class='blackSpace'> </td>
+						<td width=80 class='whiteSpace'> </td>
+						<td width=80 class='blackSpace'> </td>
+						<td width=80 class='whiteSpace'> </td>
+						<td width=80 class='blackSpace'> </td>
+						<td width=80 class='whiteSpace'> </td>
+						<td width=80 class='blackSpace'> </td>
+					</tr>
+					<tr height=80>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+					</tr>
+					<tr height=80>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+					</tr>
+					<tr height=80>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+					</tr>
+					<tr height=80>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+					</tr width=80>
+					<tr height=80>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+					</tr>
+					<tr height=80>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+					</tr>
+					<tr height=80>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+						<td class='blackSpace'> </td>
+						<td class='whiteSpace'> </td>
+					</tr>
+
+
+
+
+				</table>
+			</div>
+			<div id='whitePlayer' style="position: relative">
+
+			</div>
+			<div id='controller'>
+
+			</div>
+		</div>
+		
+		
+	</body>
+</html>
