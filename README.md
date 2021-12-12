@@ -1,1 +1,1 @@
-Hello wolrd
+simple game with vanilla javascript
