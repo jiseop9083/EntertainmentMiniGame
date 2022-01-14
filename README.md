@@ -1,1 +1,1 @@
-simple game with vanilla javascript
+# simple game with vanilla javascript
