@@ -53,17 +53,6 @@ body {
 	border-radius: 50%
 }
 
-#player1{
-	position: absolute;
-	left: 235px;
-	top: 758px;
-}
-
-#player2{
-	position: absolute;
-	left: 235px;
-	top: 8px;
-}
 
 #playerBar1 {
 	position:absolute;
@@ -86,3 +75,16 @@ body {
 	transform: rotate( 0deg );
 	transform-origin: top;
 }
+
+#player1{
+	position: absolute;
+	left: 235px;
+	top: 758px;
+}
+
+#player2{
+	position: absolute;
+	left: 235px;
+	top: 8px;
+}
+
