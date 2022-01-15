@@ -56,30 +56,30 @@ body {
 
 #playerBar1 {
 	position:absolute;
-	left: 250px;
-	top: 580px;
-	width: 0;
-	height: 200px;
-    border-left: 8px dotted lightblue;
-	transform: rotate( 0deg );
-	transform-origin: bottom;
+	left: 52px;
+	top: 775px;
+	width: 200px;
+	height: 0;
+    border-top: 8px dotted lightblue;
+	transform-origin: right;
+	transform: rotate( 90deg );
 }
 
 #playerBar2 {
-	position:absolute;
-	left: 250px;
-	top: 25px;
-	width: 0;
-	height: 200px;
-    border-left: 8px dotted lightblue;
-	transform: rotate( 0deg );
-	transform-origin: top;
+	position: absolute;
+	left: 52px;
+	top: 20px;
+	width: 200px;
+	height: 0;
+    border-top: 8px dotted lightblue;
+	transform: rotate( 90deg );
+	transform-origin: right;
 }
 
 #player1{
 	position: absolute;
 	left: 235px;
-	top: 758px;
+	top: 755px;
 }
 
 #player2{
