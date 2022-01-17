@@ -43,14 +43,26 @@ body {
 }
 
 
-.ball {
-	
+.ball {	
 	position: absolute;
 	width: 28px;
 	height: 28px;
 	background: #888888;
 	border: solid #777777 4px;
 	border-radius: 50%
+}
+
+.block {
+	position: absolute;
+	width: 58px;
+	height: 28px;
+	background: blue;
+	border: dotted #000000 4px;
+	text-align: center;
+	color: white;
+	line-height: 30px;
+	font-weight: bold;
+	font-size: 25px;
 }
 
 
