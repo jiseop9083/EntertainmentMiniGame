@@ -3,18 +3,21 @@
 let playerBar1 = document.querySelector('#playerBar1');
 let playerBar2 = document.querySelector('#playerBar2');
 let pushBar = document.querySelector('#pushBar');
-let pushBarPos = 380;
 let mainView = document.querySelector('#gameComponent');
-let isShoot = [false, false];
-let playerBarDegree1 = 90;
-let playerBarDegree2 = 270;
-let ballArray = [];
-let blockArray = [];
 const ballColor = ["#000000",
 	"#DB631F","#E57733","#D2691E","#E0904C","#FF8200","#FF8C0A","#FF9614","#FFA01E","#FFAA28","#FFB432",
 	"#FFC314","#FFC81E","#FFCD28","#FFD232","#FFD73C","#FFDC3C","#FFE146","#FFE650","#FFEB5A","#FFF064",
 	"#FFF56E","#FFFA78","#FFFA82","#FFFF8C","#FFFF96","#FAFA96","#FAFAA0","#FAFAAA","#FAFAB4","#FAFABE",
 	"#FAFAD2","#FAFAD2" ];
+const gameSpeed = 60; // frame per second
+let pushBarPos = 380;
+let isShoot = [false, false];
+let cooldown = [gameSpeed/2,gameSpeed/2];
+let playerBarDegree1 = 90;
+let playerBarDegree2 = 270;
+let ballArray = [];
+let blockArray = [];
+
 
 let keySet = new Set();
 
@@ -60,6 +63,7 @@ let MultiplyBlock = function(posX, posY, width, height, block, multiply, type) {
 
 //function
 
+
 // add ball component
 const addBall = (velX, velY, posX, posY) => {
 	const newBall = document.createElement('div');
@@ -90,48 +94,47 @@ const addMultiplyBlocks = (type) => { //type 0: downSide, 1: upSide
 	};
 	
 	const blockCnt = getRandomNum() - 1;
-		if(type === 0){ // down side
+	if(type === 0){ // down side
 
-			let totalheight = 710 - pushBarPos;
-			while(blockCnt * 30 > totalheight)
-				blockCnt--;
-			let pos = pushBarPos + 40;
-			for(let i = 0; i < blockCnt; i++) {
-				let posX = Math.floor(Math.random() * 440);
-				let posY = Math.floor((Math.random() * ((totalheight / blockCnt) - 30)) + pos);
-				const newBlock = document.createElement('div');
-				mainView.appendChild(newBlock);
-				newBlock.className = "block";
-				newBlock.style.position = "absolute";
-				newBlock.style.left = posX + "px";
-				newBlock.style.top = posY + "px";
-				blockArray.push(new MultiplyBlock(posX, posY, 60, 30, newBlock, getRandomNum() ,0));
-				
-				pos += (totalheight / blockCnt);
-			}
+		let totalheight = 710 - pushBarPos;
+		while(blockCnt * 30 > totalheight)
+			blockCnt--;
+		let pos = pushBarPos + 40;
+		for(let i = 0; i < blockCnt; i++) {
+			let posX = Math.floor(Math.random() * 440);
+			let posY = Math.floor((Math.random() * ((totalheight / blockCnt) - 30)) + pos);
+			const newBlock = document.createElement('div');
+			mainView.appendChild(newBlock);
+			newBlock.className = "block";
+			newBlock.style.position = "absolute";
+			newBlock.style.left = posX + "px";
+			newBlock.style.top = posY + "px";
+			blockArray.push(new MultiplyBlock(posX, posY, 60, 30, newBlock, getRandomNum() ,0));
+
+			pos += (totalheight / blockCnt);
 		}
-		else if(type === 1) { //up side
-			let totalheight = pushBarPos - 50;
-			while(blockCnt * 30 > totalheight)
-				blockCnt--;
-			console.log(totalheight / blockCnt + "\n" + blockCnt);
-			let pos = 50;
-			for(let i = 0; i < blockCnt; i++) {
-				let posX = Math.floor(Math.random() * 440);
-				let posY = Math.floor((Math.random() * ((totalheight / blockCnt) - 30)) + pos);
-				const newBlock = document.createElement('div');
-				mainView.appendChild(newBlock);
-				newBlock.className = "block";
-				newBlock.style.position = "absolute";
-				newBlock.style.left = posX + "px";
-				newBlock.style.top = posY + "px";
-				blockArray.push(new MultiplyBlock(posX, posY, 60, 30, newBlock, getRandomNum(), 1));
-				pos += (totalheight / blockCnt);
-			}
-			
-		}else {
-			console.log("error");
+	}
+	else if(type === 1) { //up side
+		let totalheight = pushBarPos - 50;
+		while(blockCnt * 30 > totalheight)
+			blockCnt--;
+		let pos = 50;
+		for(let i = 0; i < blockCnt; i++) {
+			let posX = Math.floor(Math.random() * 440);
+			let posY = Math.floor((Math.random() * ((totalheight / blockCnt) - 30)) + pos);
+			const newBlock = document.createElement('div');
+			mainView.appendChild(newBlock);
+			newBlock.className = "block";
+			newBlock.style.position = "absolute";
+			newBlock.style.left = posX + "px";
+			newBlock.style.top = posY + "px";
+			blockArray.push(new MultiplyBlock(posX, posY, 60, 30, newBlock, getRandomNum(), 1));
+			pos += (totalheight / blockCnt);
 		}
+
+	}else {
+		console.log("error");
+	}
 	
 
 	
@@ -140,8 +143,7 @@ const addMultiplyBlocks = (type) => { //type 0: downSide, 1: upSide
 
 // check game over
 const checkGame = () => {
-	
-	if(pushBarPos < 50 || 710 < pushBarPos ){
+	if(pushBarPos < 50 || 700 < pushBarPos ){
 		let winner = "";
 		if(pushBarPos < 50)
 			winner = "player1";
@@ -202,7 +204,7 @@ const detectCollision = () => {
 					i--;
 					isShoot[1] = false;
 					for(let j = 0;  j < blockArray.length; j++){
-						if(blockArray[j].type === 1){
+						if(blockArray[j].type === 1 ){
 							removeBlock(j);
 							j--;
 						}
@@ -225,6 +227,16 @@ const detectCollision = () => {
 						}
 					}
 					addMultiplyBlocks(0);
+				}
+			}
+			for(let j = 0;  j < blockArray.length; j++){
+				let y1 = blockArray[j].posY;
+				let y2 = blockArray[j].posY + blockArray[j].height; 
+				let y3 = pushBarPos;
+				let y4 = pushBarPos + 40;
+				if(y1 <= y4 && y3 <= y2){
+					removeBlock(j);
+					j--;
 				}
 			}
 		}
@@ -263,6 +275,22 @@ const detectCollision = () => {
 	}
 };
 
+//init
+const init = () => {
+	cooldown = [gameSpeed/2, gameSpeed/2];
+	pushBarPos = 380;
+	isShoot = [false, false];
+	playerBarDegree1 = 90;
+	playerBarDegree2 = 270;
+	while(ballArray.length !== 0)
+		removeBall(0);
+	while(blockArray.length !== 0)
+		removeBlock(0);
+	addMultiplyBlocks(0);
+	addMultiplyBlocks(1);
+}
+init();
+
 
 window.addEventListener("keydown", (e) => {
 	const key = e.key;
@@ -275,40 +303,42 @@ window.addEventListener("keyup", (e) => {
 });
 
 
-//init
-const init = () => {
-	addMultiplyBlocks(0);
-	addMultiplyBlocks(1);
-}
-init();
+
+
 
 
 
 // game
 setInterval(() => {
 	checkGame();
+	if(cooldown[0] > 0)
+		cooldown[0]--;
+	if(cooldown[1] > 0)
+		cooldown[1]--;
 	if (keySet.has("ArrowRight") && playerBarDegree1 <= 165)
-		playerBarDegree1 += 5;
+		playerBarDegree1 += 3;
 	if(keySet.has("ArrowLeft") && playerBarDegree1 >= 15)
-		playerBarDegree1 -= 5;
+		playerBarDegree1 -= 3;
 	if (keySet.has("d") && playerBarDegree2 >= 195) 
-		playerBarDegree2 -= 5;
+		playerBarDegree2 -= 3;
 	if(keySet.has("a") && playerBarDegree2 <= 345)
-		playerBarDegree2 += 5;
-	if(keySet.has("ArrowUp") && isShoot[0] === false){
+		playerBarDegree2 += 3;
+	if(keySet.has("ArrowUp") && isShoot[0] === false && cooldown[0] <= 0){
 		addBall(-10 * Math.cos(Math.PI * playerBarDegree1 / 180), -10 * Math.sin(Math.PI * playerBarDegree1 / 180), 235, 755);
 		isShoot[0] = true;
+		cooldown[0] = gameSpeed / 2;
 	}
-	if(keySet.has(" ") && isShoot[1] === false){
+	if(keySet.has(" ") && isShoot[1] === false && cooldown[1] <= 0){
 		addBall(-10 * Math.cos(Math.PI * playerBarDegree2 / 180), -10 * Math.sin(Math.PI * playerBarDegree2 / 180), 235, 8);
 		isShoot[1] = true;
+		cooldown[1] = gameSpeed / 2;
 	}
 	
 	changeEntities();
 	detectCollision();
 	playerBar1.style.transform = 'rotate(' + playerBarDegree1 + 'deg)';
 	playerBar2.style.transform = 'rotate(' + playerBarDegree2+ 'deg)';
-	}, 1000 / 30);
+	}, 1000 / gameSpeed);
 
 
 
