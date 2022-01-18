@@ -8,7 +8,7 @@ let mainView = document.querySelector('#gameComponent');
 
 
 
-
+   
 
 const ballColor = ["#000000",
 	"#DB631F","#E57733","#D2691E","#E0904C","#FF8200","#FF8C0A","#FF9614","#FFA01E","#FFAA28","#FFB432",
@@ -79,46 +79,46 @@ let MultiplyBlock = function(posX, posY, width, height, block, multiply, type) {
 const keyEffect = () => {
 	
 	if (!keySet.has("ArrowRight")){
-		rightArrowKey.style.top = "750px";
-		rightArrowKey.style.height = "75px";
+		rightArrowKey.style.top = "700px";
+		rightArrowKey.style.height = "65px";
 	} else{
-		rightArrowKey.style.top = "770px";
-		rightArrowKey.style.height = "55px";
+		rightArrowKey.style.top = "720px";
+		rightArrowKey.style.height = "45px";
 	}
 	if(!keySet.has("ArrowLeft") ){
-		leftArrowKey.style.top = "750px";
-		leftArrowKey.style.height = "75px";
+		leftArrowKey.style.top = "500px";
+		leftArrowKey.style.height = "65px";
 	} else{
-		leftArrowKey.style.top  = "770px";
-		leftArrowKey.style.height = "55px";
-	}
-	if (!keySet.has("d") ){
-		DKey.style.top = "200px";
-		DKey.style.height = "75px";
-	} else{
-		DKey.style.top = "220px";
-		DKey.style.height = "55px";
-	}
-	if(!keySet.has("a") ) {
-		AKey.style.top = "200px";
-		AKey.style.height = "75px";
-	} else{
-		AKey.style.top = "220px";
-		AKey.style.height = "55px";
+		leftArrowKey.style.top  = "520px";
+		leftArrowKey.style.height = "45px";
 	}
 	if(!keySet.has("ArrowUp")){
-		upArrowKey.style.top = "750px";
-		upArrowKey.style.height = "75px";
+		upArrowKey.style.top = "600px";
+		upArrowKey.style.height = "65px";
 	} else{
-		upArrowKey.style.top = "770px";
-		upArrowKey.style.height = "55px";
+		upArrowKey.style.top = "620px";
+		upArrowKey.style.height = "45px";
+	}
+	if (!keySet.has("d") ){
+		DKey.style.top = "280px";
+		DKey.style.height = "65px";
+	} else{
+		DKey.style.top = "300px";
+		DKey.style.height = "45px";
+	}
+	if(!keySet.has("a") ) {
+		AKey.style.top = "80px";
+		AKey.style.height = "65px";
+	} else{
+		AKey.style.top = "100px";
+		AKey.style.height = "45px";
 	}
 	if(!keySet.has(" ") ){
-		spaceKey.style.top = "200px";
-		spaceKey.style.height = "75px";
+		spaceKey.style.top = "180px";
+		spaceKey.style.height = "65px";
 	} else{
-		spaceKey.style.top = "220px";
-		spaceKey.style.height = "55px";
+		spaceKey.style.top = "200px";
+		spaceKey.style.height = "45px";
 	}
 };
 

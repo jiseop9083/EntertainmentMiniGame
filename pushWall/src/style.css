@@ -1,10 +1,7 @@
-.title {
-	font-weight: bold;
-	font-size: 30px;
-}
+
 
 body {
-	background-color: gray;
+	background-color: #999999;
 }
 
 #mainComponent{
@@ -17,7 +14,7 @@ body {
 	margin: 0 auto;
 	width: 500px;
 	height: 800px;
-	border: solid red 5px;
+	border: solid 20px black;
 	background-color: lightgreen;
 	
 }
@@ -32,6 +29,18 @@ body {
 }
 
 
+#title {
+	font-family: 'Staatliches' ,cursive; 
+	font-size: 4em; 
+	text-align: center; 
+	color: #F1C164; 
+	text-shadow: 5px 5px #2D63A7;
+	text-decoration: underline;
+} 
+
+
+
+
 #pushBar {
 	position: absolute;
 	left: 1px;
@@ -41,9 +50,10 @@ body {
 	background: yellow;
 	border: solid gold 5px;
 	border-radius: 20px;
-	font-size: 25px;
-	font-weight: 700;
-	line-height: 150%;
+	font-size: 30px;
+	font-weight: bold;
+	line-height: 30px;
+	text-shadow: 2px 2px #00ffff;
 }
 
 
@@ -112,10 +122,69 @@ body {
 	text-align: center;
 	font-size: 25px;
 	font-weight: bold;
-
-	
 }
 
+#controller1 {
+	position: absolute; 
+	left: 532px;
+	top: -20px;
+	width: 198px;   
+	height: 840px;
+	background: #11ccdd;
+
+}
+
+#controller1:after{
+	width: 12px;
+	height: 840px;
+	background: #666666;
+	position: absolute; 
+	content: ""; 
+	top: 0px; 
+	left: -12px; 
+}	
+
+		 
+#controller1:before{
+	width: 120px;
+	height: 840px;
+	border-radius: 75px;
+	background: #11ccdd;
+	position: absolute; 
+	content: ""; 
+	top: 0px; 
+	left: 138px; 
+}
+
+
+#controller2 {
+	position: absolute; 
+	left: -230px;
+	top: -20px;
+	width: 198px;   
+	height: 840px;
+	background: #ddcc11;
+
+}
+#controller2:before{
+	width: 120px;
+	height: 840px;
+	border-radius: 75px;
+	background: #ddcc11;
+ 	position: absolute; 
+ 	content: ""; 
+ 	top: 0px; 
+	left: -60px; 
+}
+#controller2:after{
+	width: 12px;
+	height: 840px;
+	background: #333333;
+	position: absolute; 
+	content: ""; 
+	top: 0px; 
+	left: 198px; 
+}
 
 
 .pushButton{
@@ -125,7 +194,7 @@ body {
     width: 100px;
     height:75px;
     border-radius: 50px / 25px;
-    background-color: rgba(255, 0, 0, 1);
+    background-color: #ff0000;
     border: 4px solid black;
 	line-height: 100%;
 
@@ -137,7 +206,7 @@ body {
     height: 30px;
     left: -4px;
     top: -5px;
-    background-color:  rgba(255, 0, 0, 1);
+    background-color: #ff0000;
     border-radius: 50px / 20px;
 	border: 4px solid black;
 }
@@ -146,63 +215,97 @@ body {
 
 #upArrow{
 	position: absolute;
-	left: 1150px;
-    top: 650px;
+	left: 70px;
+    top: 50px;
 	display: block;
-	
+	background-color: #ffff00;
+	box-shadow: 5px -3px 8px #666666;
 } #upArrow:after{
 	content: "↑";
+	background-color: #dddd00;
 }
 
 
 #leftArrow{
 	position: absolute;
-	left: 1030px;
+	left: 70px;
     top: 750px;
 	display: block;
+	background-color: #0000ff;
+	box-shadow: 5px -3px 8px #666666;
 } #leftArrow:after{
 	content: "←";
+	background-color: #0000dd;
 }
 
 #rightArrow{
 	position: absolute;
-	left: 1270px;
+	left: 70px;
     top: 750px;
 	display: block;
+	background-color: #ff0000;
+	box-shadow: 5px -3px 8px #666666;
 } #rightArrow:after{
 	content: "→";
+	background-color: #dd0000;
 }
 
 
 #space{
 	position: absolute;
-	left: 150px;
+	left: 10px;
     top: 200px;
 	display: block;
+	background-color: #ffff00;
+	box-shadow: 5px -3px 8px #666666;
 } #space:after{
 	content: "space";
+	background-color: #dddd00;
 }
 
 #A{
 	position: absolute;
-	left: 30px;
+	left: 10px;
     top: 200px;
 	display: block;
+	background-color: #0000ff;
+	box-shadow: 5px -3px 8px #666666;
 }
 
 #A:after{
 	content: "A";
+	background-color: #0000dd;
 }
 
 
 #D{
 	position: absolute;
-	left: 270px;
+	left: 10px;
     top: 200px;
 	display: block;
+	background-color: #ff0000;
+	box-shadow: 5px -3px 8px #666666;
 }
 #D:after{
 	content: "D";
+	background-color: #dd0000;
+}
+
+
+#cheerUp1{
+	position: absolute;
+	height: 150px;
+	width: 150px;
+	left: 50px;
+	top: 150px;
+}
+
+#cheerUp2{
+	position: absolute;
+	height: 150px;
+	width: 150px;
+	left: -10px;
+	top: 550px;
 }
 
 
