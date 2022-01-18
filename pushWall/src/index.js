@@ -4,6 +4,12 @@ let playerBar1 = document.querySelector('#playerBar1');
 let playerBar2 = document.querySelector('#playerBar2');
 let pushBar = document.querySelector('#pushBar');
 let mainView = document.querySelector('#gameComponent');
+
+
+
+
+
+
 const ballColor = ["#000000",
 	"#DB631F","#E57733","#D2691E","#E0904C","#FF8200","#FF8C0A","#FF9614","#FFA01E","#FFAA28","#FFB432",
 	"#FFC314","#FFC81E","#FFCD28","#FFD232","#FFD73C","#FFDC3C","#FFE146","#FFE650","#FFEB5A","#FFF064",
@@ -12,13 +18,18 @@ const ballColor = ["#000000",
 const gameSpeed = 60; // frame per second
 let pushBarPos = 380;
 let isShoot = [false, false];
-let cooldown = [gameSpeed/2,gameSpeed/2];
+let cooldown = [gameSpeed/1.5,gameSpeed/1.5];
 let playerBarDegree1 = 90;
 let playerBarDegree2 = 270;
 let ballArray = [];
 let blockArray = [];
 
-
+let AKey = document.querySelector('#A');
+let DKey = document.querySelector('#D');
+let leftArrowKey = document.querySelector('#leftArrow');
+let rightArrowKey = document.querySelector('#rightArrow');
+let spaceKey = document.querySelector('#space');
+let upArrowKey = document.querySelector('#upArrow');
 let keySet = new Set();
 
 
@@ -62,6 +73,55 @@ let MultiplyBlock = function(posX, posY, width, height, block, multiply, type) {
 
 
 //function
+
+
+// pressed key effect on css 
+const keyEffect = () => {
+	
+	if (!keySet.has("ArrowRight")){
+		rightArrowKey.style.top = "750px";
+		rightArrowKey.style.height = "75px";
+	} else{
+		rightArrowKey.style.top = "770px";
+		rightArrowKey.style.height = "55px";
+	}
+	if(!keySet.has("ArrowLeft") ){
+		leftArrowKey.style.top = "750px";
+		leftArrowKey.style.height = "75px";
+	} else{
+		leftArrowKey.style.top  = "770px";
+		leftArrowKey.style.height = "55px";
+	}
+	if (!keySet.has("d") ){
+		DKey.style.top = "200px";
+		DKey.style.height = "75px";
+	} else{
+		DKey.style.top = "220px";
+		DKey.style.height = "55px";
+	}
+	if(!keySet.has("a") ) {
+		AKey.style.top = "200px";
+		AKey.style.height = "75px";
+	} else{
+		AKey.style.top = "220px";
+		AKey.style.height = "55px";
+	}
+	if(!keySet.has("ArrowUp")){
+		upArrowKey.style.top = "750px";
+		upArrowKey.style.height = "75px";
+	} else{
+		upArrowKey.style.top = "770px";
+		upArrowKey.style.height = "55px";
+	}
+	if(!keySet.has(" ") ){
+		spaceKey.style.top = "200px";
+		spaceKey.style.height = "75px";
+	} else{
+		spaceKey.style.top = "220px";
+		spaceKey.style.height = "55px";
+	}
+};
+
 
 
 // add ball component
@@ -304,13 +364,10 @@ window.addEventListener("keyup", (e) => {
 
 
 
-
-
-
-
 // game
 setInterval(() => {
 	checkGame();
+	keyEffect();
 	if(cooldown[0] > 0)
 		cooldown[0]--;
 	if(cooldown[1] > 0)
@@ -326,12 +383,12 @@ setInterval(() => {
 	if(keySet.has("ArrowUp") && isShoot[0] === false && cooldown[0] <= 0){
 		addBall(-10 * Math.cos(Math.PI * playerBarDegree1 / 180), -10 * Math.sin(Math.PI * playerBarDegree1 / 180), 235, 755);
 		isShoot[0] = true;
-		cooldown[0] = gameSpeed / 2;
+		cooldown[0] = gameSpeed / 1.5;
 	}
 	if(keySet.has(" ") && isShoot[1] === false && cooldown[1] <= 0){
 		addBall(-10 * Math.cos(Math.PI * playerBarDegree2 / 180), -10 * Math.sin(Math.PI * playerBarDegree2 / 180), 235, 8);
 		isShoot[1] = true;
-		cooldown[1] = gameSpeed / 2;
+		cooldown[1] = gameSpeed / 1.5;
 	}
 	
 	changeEntities();
