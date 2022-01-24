@@ -1,0 +1,15 @@
+
+body { 
+	overflow: hidden; 
+	height: 100%;
+}
+
+#wrapper{
+	position: relative;
+	width: 2500px;
+	height: 1500px;
+	top: -500px;
+	left: -1000px;
+	background-color: green;
+	
+}
