@@ -1,0 +1,260 @@
+body{
+	position: absolute;
+	background-color: #000033;
+}
+
+#main{
+	position: absolute;
+	width: 1430px;
+	height: 820px;
+	left: 50px;
+	top: 85px;
+	background-color: #000033;
+	border: solid #D2FA64 15px;
+	border-radius: 5em;
+	z-index: -10;
+}
+
+#setting{
+	width: 1420px;
+	height: 820px;
+	border-radius: 5em;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	z-index: -4;
+}
+
+#title{
+	position: absolute;
+	left: 500px;
+	top: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	width: 530px;
+	font-family: "Staatliches", cursive;
+	font-size: 4em;
+	text-align: center;
+	color: yellow;
+	text-shadow: 5px 5px #2D63A7;
+}
+
+.player{
+	width: 400px;
+	height: 680px;
+	font-family: "Staatliches", cursive;
+	font-size: 3em;
+	text-align: center;
+	color: #D2FA64;
+	line-height: 1.5em;
+	margin-top: 20px;
+}
+
+#player1{
+	margin-left: 100px;
+	left: 130px;
+}
+
+#player2{
+	margin-right: 130px;
+	left: 930px;
+}
+
+.name{
+	margin: 0 auto;
+	margin-top: 10px;
+	width: 290px;
+	height: 50px;
+	border: solid #eeeeff 7px;
+	border-radius: 25px;
+	background-color: #aaaaff;
+	display: flex;
+	line-height: 50px;
+	font-weight: 600;
+	font-size: 30px;
+	color: gray;
+	text-align: center;
+}
+
+.leftNext{
+	width: 50px;
+	height: 50px;
+}
+
+.leftNext:hover{
+	border-radius: 20px;
+	background-color: #6666ff;
+	color: black;
+}
+
+.nameSelector{
+	width: 200px;
+	height: 50px;
+	color: black;
+}
+
+.rightNext{
+	width: 50px;
+	height: 50px;
+}
+
+.rightNext:hover{
+	border-radius: 20px;
+	background-color: #6666ff;
+	color: black;
+}
+
+.imgDiv {
+	border-radius: 15px;
+	border: solid #D2FA64 15px;
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+
+.Bar{
+	width: 240px;
+	height: 40px;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 25px;
+	border-radius: 25px;
+	border: solid #eeeeff 5px;
+	background-color: #aaaaff;
+	font-size: 25px;
+	line-height: 35px;
+	color: black;
+}
+
+#middle{
+	width: 360px;
+}
+
+#start{
+	width: 280px;
+	height: 160px;
+	margin: 0 auto;
+	margin-top: 100px;
+	
+	margin-bottom: 30px;
+	border-radius: 50px;
+	font-family: "Staatliches", cursive;
+	color: yellow;
+	font-size: 12em;
+	text-align: center;
+	line-height: 0.8em;
+	text-shadow: 7px 7px #2D63A7;
+}
+
+#start:hover{
+	font-size: 13em;
+	text-shadow: 7px 7px red;
+}
+
+#start p{
+	width: 300px;
+	margin-top: 30px;
+	font-size: 22px;
+	text-align: center;
+	line-height: 22px;
+	font-family: none;
+	color: yellow;
+	text-shadow: 1px 1px red;
+}
+
+#mapview{
+	width: 360px;
+	height: 400px;
+	top: 65px;
+	font-family: "Staatliches", cursive;
+	font-size: 3em;
+	text-align: center;
+	line-height: 1.5em;
+	margin-top: 20px;
+	color: yellow;
+}
+
+#mapview .imgDiv{
+	position: relative;
+	border-radius: 15px;
+	border: solid yellow 15px;
+	width: 260px;
+	height: 260px;
+	margin: 0 auto;
+	margin-top: 25px;
+}
+
+.optionDiv{
+	position: absolute;
+	width: 320px;
+	height: 110px;
+	left: 970px;
+	top: 750px;
+	font-size: 30px;
+	line-height: 35px;
+	color: white;
+}
+
+.option:hover{
+	font-size: 32px;
+	
+}
+
+#random{
+	width: 320px;
+	height: 50px;
+	font-weight: 400px;
+	margin-left: 4px;
+}
+
+#gameComponent { 
+	position: absolute;
+	left: 332px;
+	top: 17px;
+	width: 770px;
+	height: 770px;
+	border: solid 8px white;
+	background-color: lightgreen;
+	z-index: -2;
+}
+
+.Player{
+	margin-top: 0px;
+	
+}
+
+.BreakableBlock{
+	position: absolute;
+	height: 70px;
+	width: 70px;
+}
+
+.UnbreakableBlock{
+	position: absolute;
+	height: 70px;
+	width: 70px;
+}
+
+.Item{
+	position: absolute;
+	height: 42px;
+	width: 42px;
+}
+
+.Bomb{
+	position: absolute;
+	height: 70px;
+	width: 70px;
+	z-index: -1;
+}
+
+.ExplodingBlock{
+	position: absolute;
+	height: 70px;
+	width: 70px;
+	z-index: -1;
+	
+}
+

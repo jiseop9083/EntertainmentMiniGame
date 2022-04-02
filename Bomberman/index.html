@@ -1,0 +1,79 @@
+<!DOCTPE HTML>
+<!-- Bomberman Ver.0.1.2 / Made in Republic of Korea Airforce / Made by jiseop830 / 2022.03.29-->
+<!-- no copyright. edit for free-->
+
+<html>
+	<head>
+		<title>통신병의 즐길거리 Bomberman</title>
+		<meta charset="UTF-8"/>
+		<script>
+			//constant
+			const mainViewHeight = 770;
+			const mainViewWidth = 770;
+			const blockSize = 70;
+			const FPS = 60;
+		</script>
+		<script defer src="./src/View.js"></script>
+		<script defer src="./src/Data/MapData.js"></script>
+		<script defer src="./src/Data/PlayData.js"></script>
+		<script defer src="./src/Data/PlayerList.js"></script>
+		<script defer src="./src/Entity/Entity.js"></script>
+		<script defer src="./src/Entity/Player.js"></script>
+		<script defer src="./src/Entity/Block.js"></script>
+		<script defer src="./src/Entity/Item.js"></script>
+		<script defer src="./src/InfoPlayer.js"></script>
+		<script defer src="./src/Map.js"></script>
+		<script defer src="./src/Setting.js"></script>
+		<script defer src="./src/Main.js"></script>
+		<link rel="stylesheet" href="./src/style.css"/>
+	</head>
+	<body>
+		<h1 id="title" align="center">Bomberman</h1>	
+		<div id="main">
+			<div id="gameComponent"></div>
+			
+			<div id="setting">
+				<div class="player" id="player1">Player 1
+					<div class="name">
+						<div class="leftNext">◀</div>
+						<div class="nameSelector"></div>
+						<div class="rightNext">▶</div>
+					</div>
+					<div class="imgDiv"></div>
+					<div class="Bar powerBar"></div>
+					<div class="Bar cntBar"></div>
+					<div class="Bar speedBar"></div>
+					<div class="Bar sizeBar"></div>
+				</div>
+				<div id="middle">
+					<div id="mapview">Map Preview
+						<div class="name">
+							<div class="leftNext">◀</div>
+							<div class="nameSelector"></div>
+							<div class="rightNext">▶</div>
+						</div>
+						<div class="imgDiv"></div>
+					</div>
+					<div id="start">VS
+						<p>Please click "VS" to start.</p>
+					</div>
+				</div>
+				<div class="player" id="player2">Player 2
+					<div class="name">
+						<div class="leftNext">◀</div>
+						<div class="nameSelector"></div>
+						<div class="rightNext">▶</div>
+					</div>
+					<div class="imgDiv"></div>
+					<div class="Bar powerBar"></div>
+					<div class="Bar cntBar"></div>
+					<div class="Bar speedBar"></div>
+					<div class="Bar sizeBar"></div>
+				</div>
+				<div class="optionDiv">
+					<div class="option" id="random">drop item randomly</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
