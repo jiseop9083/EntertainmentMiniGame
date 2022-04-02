@@ -186,6 +186,10 @@ class Map{
 				return  true;
 			if(blockType === 6 && !bomb)
 				return true;
+			if(blockType >= 8 && blockType <= 10){
+				let audio = new Audio("./assets/Sound/getItem.mp3");
+				audio.play();
+			}
 		}
 		return false;
 	}
@@ -220,6 +224,8 @@ class Map{
 	}
 	
 	bombExplode(bomb){
+		let audio = new Audio("./assets/Sound/boom.mp3");
+		audio.play();
 		const dx = [0, 0, 1, -1];
 		const dy = [1, -1, 0, 0];
 		let x = Math.floor(bomb.posX/blockSize);
@@ -305,6 +311,8 @@ class Map{
 			if(this.mapFile[posY][posX] === 0){
 				const power = this.player1.installBomb();
 				if(power){
+					let audio = new Audio("./assets/Sound/installBomb.mp3");
+					audio.play();
 					this.blockList[posY][posX] = new Bomb(posY, posX, power, this.player1);
 					this.mapFile[posY][posX] = 6;
 				}
@@ -328,6 +336,8 @@ class Map{
 			if(this.mapFile[posY][posX] === 0){
 				const power = this.player2.installBomb();
 				if(power){
+					let audio = new Audio("./assets/Sound/installBomb.mp3");
+					audio.play();
 					this.blockList[posY][posX] = new Bomb(posY, posX, power, this.player2);
 					this.mapFile[posY][posX] = 6;
 				}
