@@ -1,0 +1,35 @@
+<!DOCTPE HTML>
+
+<html>
+	<head>
+		<title>통신병의 즐길거리 WorldClass Fighters</title>
+		<meta charset="UTF-8"/>
+		<script>
+			//constant
+			const canvasHeight = 576;
+			const canvasWidth = 1024;
+			const gravity = 0.3;
+			
+			//
+		</script>
+		<script defer src="./src/data.js"></script>
+		<script defer src="./src/Entity.js"></script>
+		<script defer src="./src/Player.js"></script>
+		<script defer src="./src/index.js"></script>
+		<link rel="stylesheet" href="./src/style.css"/>
+	</head>
+	<body>
+		<div style="position: relative;">
+			<div id="healthDiv">
+				<div id="playerHealthBar">
+					<div id="playerHealth"></div>
+				</div>
+				<div id="timer">99</div>
+				<div id="enemyHealthBar">
+					<div id="enemyHealth"></div>
+				</div>
+			</div>
+			<canvas></canvas>
+		</div>
+	</body>
+</html>
