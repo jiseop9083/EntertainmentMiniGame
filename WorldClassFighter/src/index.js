@@ -46,11 +46,10 @@ const player = new Player({
 		x: 0,
 		y: 0,
 	},
-	
 	playerType: playerCharacter,
 	size: playerInfo.size,
 	imageSrc: playerInfo.posture.stand.src,
-	offset: playerInfo.posture.stand.offset,
+	offset: playerInfo.posture.offset,
 	frameMax: playerInfo.posture.stand.frameMax,
 	scale: playerInfo.posture.scale,
 });
@@ -66,12 +65,9 @@ const enemy = new Player({
 		y: 0,
 	},
 	playerType: enemyCharacter,
-	size: {
-		width: 50,
-		height: 50,
-	},
+	size: playerInfo.size,
 	imageSrc: enemyInfo.posture.stand.src,
-	offset: enemyInfo.posture.stand.offset,
+	offset: enemyInfo.posture.offset,
 	frameMax: enemyInfo.posture.stand.frameMax,
 	scale: enemyInfo.posture.scale,
 });

@@ -4,6 +4,7 @@ class Player extends Sprite {
 		this.playerData = playerData[`${playerType}`];
 		this.velocity = velocity;
 		this.isAttacking = 0;
+		this.isAttacked = 0;
 		this.attackCooltime = 0;
 		this.direction = false; // false가 오른쪽봄, true가 왼쪽 봄
 		this.maxHealth = this.playerData.maxHealth; // 100%라는 뜻임
@@ -51,10 +52,14 @@ class Player extends Sprite {
 			this.attackCooltime--;
 		if(this.isAttacking)
 			this.isAttacking--;
+		if(this.isAttacked)
+			this.isAttacked--;
 		this.changeAction("standing");
 	}
 	
 	attack(attackType) {
+		if(this.isAttacked)
+			return;
 		this.isAttacking = true;
 		this.attackCooltime = this.playerData.attackDelay;
 		let atkType = this.playerData.posture[`${attackType}`];
@@ -64,9 +69,12 @@ class Player extends Sprite {
 			this.attackBox.size.height = this.size.height;
 			this.attackBox.offset.right.y = 0;
 			this.attackBox.offset.left.y = 0;
+		} else if(attackType === "under"){
+			this.attackBox.size.height = 50;
+			this.attackBox.offset.right.y = this.size.height - 50;
+			this.attackBox.offset.left.y = this.size.height - 50;
 		} else{
 			this.attackBox.size.height = 50;
-			console.log(this.attackBox.offset.right.y);
 			this.attackBox.offset.right.y = (this.size.height / 4);
 			this.attackBox.offset.left.y = (this.size.height / 4);
 		}
@@ -91,20 +99,31 @@ class Player extends Sprite {
 	moveLeft() {
 		if(this.isAttacking && !this.isJump)
 			return;
+		if(this.isAttacked)
+			return;
 		this.velocity.x = -this.playerData.speed;
 	}
 	moveRight() {
 		if(this.isAttacking && !this.isJump)
 			return;
+		if(this.isAttacked)
+			return;
 		this.velocity.x = this.playerData.speed;
 	}
 	jump(){ 
+		if(this.isAttacked)
+			return;
 		this.velocity.y = -this.playerData.jump;
 		this.isJump = true;
 	}
 	
 	damage(amount){
+		if(this.isAttacked)
+			return;
 		this.health -= amount;
+		this.changeAction("attacked");
+		this.isAttacked = this.frameMax * this.frameCnt;
+		this.isAttacking = 0;
 		if(this.health < 0)
 			this.health = 0;
 	}
@@ -112,7 +131,10 @@ class Player extends Sprite {
 	changeAction(action){
 		
 		if (this.action === "attacking" && this.isAttacking){
-			console.log(this.frameCurrent, this.isAttacking);
+			return;
+		}
+		if (this.action === "attacked" && this.isAttacked){
+					console.log(this.isAttacked);
 			return;
 		}
 		switch (action) {
@@ -122,19 +144,28 @@ class Player extends Sprite {
 					this.image = new Image();
 					this.image.src = this.playerData.posture.stand.src;
 					this.frameMax = this.playerData.posture.stand.frameMax;
-					this.offset = this.playerData.posture.stand.offset;
 					this.frameCnt = this.playerData.posture.stand.frameCnt;
 					this.frameCurrent = 0;
 					this.framesElapsed = 0;
 				}
 				break;
+			case "attacked":
+				if (this.action !== action) {
+					this.action = "attacked";
+					this.image = new Image();
+					this.image.src = this.playerData.posture.attacked.src;
+					this.frameMax = this.playerData.posture.attacked.frameMax;
+					this.frameCnt = this.playerData.posture.attacked.frameCnt;
+					this.frameCurrent = 0;
+					this.framesElapsed = 0;
+				}
+				break;	
 			case "attacking": //front attack
 				if (this.action !== action) {
 					this.action = "attacking";
 					this.image = new Image();
 					this.image.src = this.playerData.posture.front.src;
 					this.frameMax = this.playerData.posture.front.frameMax;
-					this.offset = this.playerData.posture.front.offset;
 					this.frameCnt = this.playerData.posture.front.frameCnt;
 					this.frameCurrent = 0;
 					this.framesElapsed = 0;
