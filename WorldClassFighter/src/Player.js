@@ -1,6 +1,6 @@
 class Player extends Sprite {
-	constructor({position, color, velocity, playerType, imageSrc, frameMax=1, scale=1}){
-		super({position, size: playerData[`${playerType}`].size, color, imageSrc, frameMax, scale});
+	constructor({position, color, velocity, playerType, size, imageSrc, offset, frameMax=1, scale=1}){
+		super({position, size, color, imageSrc, offset, frameMax, scale});
 		this.playerData = playerData[`${playerType}`];
 		this.velocity = velocity;
 		this.isAttacking = 0;
@@ -8,22 +8,23 @@ class Player extends Sprite {
 		this.direction = false; // false가 오른쪽봄, true가 왼쪽 봄
 		this.maxHealth = this.playerData.maxHealth; // 100%라는 뜻임
 		this.health = this.playerData.maxHealth;
-		this.power = this.playerData.attack.basic.power; // 20%라는 뜻임
+		this.power = this.playerData.posture.basic.power; // 20%라는 뜻임
 		this.isJump = false;
 		this.action = "standing";
 		this.attackBox = new Hitbox({
 			position: this.position,
 			size: {
-				width: this.playerData.attack.basic.distance,
+				width: this.playerData.posture.basic.distance,
 				height: 50,
 			},
-			color: "blue",
+			color: "black",
 		});
 	}
 	
 	
 	
 	draw() {
+		
 		super.draw();
 		if (this.isAttacking) {
 			this.attackBox.draw();
@@ -32,9 +33,13 @@ class Player extends Sprite {
 	
 	update(enemyPosX) {
 		super.update();
-		if(this.position.x < enemyPosX)
+		if(this.position.x < enemyPosX){
 			this.direction = false;
-		else this.direction = true;
+			this.isFlip = false;
+		} else {
+			this.direction = true;
+			this.isFlip = true;
+		}
 		this.position.x += this.velocity.x;
 		this.position.y += this.velocity.y;
 		if (this.position.y + this.size.height + this.velocity.y >= canvas.height - 100){
@@ -46,23 +51,24 @@ class Player extends Sprite {
 			this.attackCooltime--;
 		if(this.isAttacking)
 			this.isAttacking--;
-		else this.changeAction("standing");
+		this.changeAction("standing");
 	}
 	
 	attack(attackType) {
 		this.isAttacking = true;
 		this.attackCooltime = this.playerData.attackDelay;
-		
-		this.power = this.playerData.attack[`${attackType}`].power;
-		this.attackBox.size.width = this.playerData.attack[`${attackType}`].distance;
+		let atkType = this.playerData.posture[`${attackType}`];
+		this.power = atkType.power;
+		this.attackBox.size.width = atkType.distance;
 		if(attackType === "upper"){
 			this.attackBox.size.height = this.size.height;
 			this.attackBox.offset.right.y = 0;
 			this.attackBox.offset.left.y = 0;
 		} else{
 			this.attackBox.size.height = 50;
-			this.attackBox.offset.right.y = 50;
-			this.attackBox.offset.left.y = 50;
+			console.log(this.attackBox.offset.right.y);
+			this.attackBox.offset.right.y = (this.size.height / 4);
+			this.attackBox.offset.left.y = (this.size.height / 4);
 		}
 		this.attackBox.offset.left.x = (this.size.width / 2) - this.attackBox.size.width;
 		this.attackBox.offset.right.x = (this.size.width / 2);
@@ -79,13 +85,17 @@ class Player extends Sprite {
 				y: this.position.y + this.attackBox.offset.right.y,	
 			};
 		}
-		this.isAttacking = 30;
+		this.isAttacking = atkType.frameMax * atkType.frameCnt;
 	}
 	
 	moveLeft() {
+		if(this.isAttacking && !this.isJump)
+			return;
 		this.velocity.x = -this.playerData.speed;
 	}
 	moveRight() {
+		if(this.isAttacking && !this.isJump)
+			return;
 		this.velocity.x = this.playerData.speed;
 	}
 	jump(){ 
@@ -100,23 +110,32 @@ class Player extends Sprite {
 	}
 	
 	changeAction(action){
+		
+		if (this.action === "attacking" && this.isAttacking){
+			console.log(this.frameCurrent, this.isAttacking);
+			return;
+		}
 		switch (action) {
 			case "standing":
 				if (this.action !== action) {
 					this.action = "standing";
-					this.image.src = this.playerData.image.stand.src;
-					this.frameMax = this.playerData.image.stand.frameMax;
+					this.image = new Image();
+					this.image.src = this.playerData.posture.stand.src;
+					this.frameMax = this.playerData.posture.stand.frameMax;
+					this.offset = this.playerData.posture.stand.offset;
+					this.frameCnt = this.playerData.posture.stand.frameCnt;
 					this.frameCurrent = 0;
 					this.framesElapsed = 0;
-				}else{
-					console.log("ddd");
 				}
 				break;
-			case "attacking":
+			case "attacking": //front attack
 				if (this.action !== action) {
 					this.action = "attacking";
-					this.image.src = this.playerData.image.attack.src;
-					this.frameMax = this.playerData.image.attack.frameMax;
+					this.image = new Image();
+					this.image.src = this.playerData.posture.front.src;
+					this.frameMax = this.playerData.posture.front.frameMax;
+					this.offset = this.playerData.posture.front.offset;
+					this.frameCnt = this.playerData.posture.front.frameCnt;
 					this.frameCurrent = 0;
 					this.framesElapsed = 0;
 					

@@ -13,8 +13,17 @@ c.fillRect(0, 0, canvas.width, canvas.height);
 
 // 임시 표시
 
+const playerCharacter = "muscleMemory";
+const enemyCharacter = "muscleMemory";
+const playerInfo = playerData[`${playerCharacter}`];
+const enemyInfo = playerData[`${playerCharacter}`];
+
 const background = new Sprite({
-	position: {
+	position: { 
+		x: 0,
+		y: 0,
+	},
+	offset: {
 		x: 0,
 		y: 0,
 	},
@@ -22,13 +31,14 @@ const background = new Sprite({
 		width: canvas.width,
 		height: canvas.height,
 	},
-	color: "black",
+	color: "blue",
 	imageSrc: "./assets/background.jpg",
+	scale: 1.45,
 });
 
 const player = new Player({
 	position: {
-		x: 100,
+		x: 220,
 		y: canvas.height - 260,
 	},
 	color: "green",
@@ -36,9 +46,13 @@ const player = new Player({
 		x: 0,
 		y: 0,
 	},
-	playerType: "muscleMemory",
-	imageSrc: "./assets/player/muscleMemory/stand.png",
-	frameMax: 2,
+	
+	playerType: playerCharacter,
+	size: playerInfo.size,
+	imageSrc: playerInfo.posture.stand.src,
+	offset: playerInfo.posture.stand.offset,
+	frameMax: playerInfo.posture.stand.frameMax,
+	scale: playerInfo.posture.scale,
 });
 
 const enemy = new Player({
@@ -51,9 +65,15 @@ const enemy = new Player({
 		x: 0,
 		y: 0,
 	},
-	playerType: "muscleMemory",
-	imageSrc: "./assets/player/muscleMemory/stand.png",
-	frameMax: 2,
+	playerType: enemyCharacter,
+	size: {
+		width: 50,
+		height: 50,
+	},
+	imageSrc: enemyInfo.posture.stand.src,
+	offset: enemyInfo.posture.stand.offset,
+	frameMax: enemyInfo.posture.stand.frameMax,
+	scale: enemyInfo.posture.scale,
 });
 let playTime = 99 * 60;	
 
@@ -108,6 +128,17 @@ const collision = ({entity1, entity2}) => {
 		entity2.position.y <= entity1.position.y + entity1.size.height);
 };
 
+const isEnd = () => {
+	if(player.health === 0){
+		alert("player2 win!!");
+		player.health = player.maxHealth;
+	}
+	else if(enemy.health === 0){
+		alert("player1 win!!");
+		enemy.health = enemy.maxHealth;
+	}
+}
+
 
 
 
@@ -147,9 +178,7 @@ const animate = () => {
 			player.attack("basic");
 		}
 		player.changeAction("attacking");
-	} else if(!player.isAttacking) {
-		//console.log("move");
-		//player.changeAction("standing");
+	} else {
 		if (keys.a.pressed ) {
 			player.moveLeft();
 		} if (keys.d.pressed ) {
@@ -174,10 +203,10 @@ const animate = () => {
 			enemy.attack("upper");
 		} else{
 			enemy.attack("basic");
-
 		}
+		enemy.changeAction("attacking");
 		
-	}  else if(!enemy.isAttacking) {
+	}  else {
 		if (keys.ArrowLeft.pressed ) {
 			enemy.moveLeft();
 		} if (keys.ArrowRight.pressed ) {
@@ -189,14 +218,13 @@ const animate = () => {
 	
 	//collision
 	//
-	
-	if(collision({entity1: player.attackBox, entity2: enemy}) && player.isAttacking){
+	if(collision({entity1: player.attackBox, entity2: enemy}) && player.isAttacking && player.frameCurrent === Math.floor((player.frameMax + 1)/ 2)){
 		enemy.damage(player.power);
-		player.isAttacking = false;
+		player.power = 0;
 	}
-	if(collision({entity1: enemy.attackBox, entity2: player}) && enemy.isAttacking){
+	if(collision({entity1: enemy.attackBox, entity2: player}) && enemy.isAttacking && enemy.frameCurrent === Math.floor((enemy.frameMax + 1)/ 2)){
 		player.damage(enemy.power);
-		enemy.isAttacking = false;
+		enemy.power = 0;
 	}
 	playerHealth.style.width = Math.floor((player.health / player.maxHealth) * 100) + "%";
 	enemyHealth.style.width = Math.floor((enemy.health / enemy.maxHealth) * 100) + "%";
@@ -206,7 +234,7 @@ const animate = () => {
 		playTime--;
 		timer.innerHTML = Math.round(playTime / 60);
 	}
-	
+	isEnd();
 }
 
 animate();
